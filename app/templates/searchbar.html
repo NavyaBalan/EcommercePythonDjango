@@ -1,0 +1,40 @@
+{% extends 'nav.html' %}
+{% load static %}
+
+{% block title %}Search{% endblock title %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+      {% if products %}
+      {% for product in products %}
+        <div class="col-lg-5 mt-5">
+
+            <div class="image-container">
+                <img src="{{ product.product_image.url }}" class="image col-xs-6
+                col-sm-12 col-lg-12 mt-3 text-sm-center w-75 h-75"   alt="{{ product.name }}">
+            </div>
+
+        </div>
+        <div class="col-md-6  ">
+            <h2>{{ product.name }}</h2>
+            <p class="text-success">$ {{ product.price }}</p>
+           
+            <p class="fs-5" style="font-family: Rajdhani;">{{ product.description }}</p>
+            
+         
+            <div class="buttons row flex mt-3" style="font-family: Rajdhani;">
+                <form action="{% url 'addtocart' product.id %}" method="GET" class="buttons row flex mt-3" style="font-family: Rajdhani;">
+                    <input type="hidden" name="prod_id" value="{{ product.id }}"/>
+                    <button type="submit" class="btn btn-success shadow px-5 py-2">Add to Cart</button>
+                </form>
+                
+            </div>
+        </div> 
+        {% endfor %}
+        {% else %}
+        <h2 class="text-center mt-5">No Products Available</h2>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

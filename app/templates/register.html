@@ -1,0 +1,47 @@
+{% extends 'nav.html' %}
+{% load static %}
+{% block title %} Registration {% endblock title %}
+{% block content %} 
+<div class="container" style="max-width: 400px; margin: 0 auto;  margin-top: 3%; padding: 20px;  box-shadow: 0px 0px 10px 0px #666;">
+<h1 style="  text-align: center;
+font-size: 24px;
+margin-bottom: 20px;"> Customer Registration </h1>
+
+ 
+      <form action="{% url 'register'%}" method="POST">
+        {% csrf_token %}
+        {% for fm in form %}
+        {{ fm.label_tag }} {{ fm }} <small class="text-danger">{{ fm.errors|striptags }}</small>
+
+       <br>
+       {% endfor %}
+     <input type="submit" style=" width: 100%;" class="btn btn-success" value="Register">
+
+  <div class='signup_container' style="display: flex; align-items: center;">
+    <p style="font-size: 16px; margin-left: 5%; margin-top: 2%; flex: 1;">Already Have An Account?</p> 
+    <ul style="list-style-type: none; flex: 0;">
+        <li>
+            <a href="{% url 'login' %}" style="text-decoration: none; margin-right: 55px; margin-top: 2%;" >SignUp</a>
+        </li>
+    </ul>
+</div>
+<!-- if some errors in the fields -->
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+                  <p class=" alert alert-danger my-3">{{error}}</p>
+            {% endfor %}
+        {% endif %}
+
+        <!-- if some sucess messages -->
+        {% if messages %}
+              {% for msg in messages %}
+                  <div class="alert alert-{{msg.tags}}"  role="alert">
+                    {{msg}}
+                  </div>
+              {% endfor %}
+        {% endif %}
+</form>
+</div>
+
+{% endblock %}
+

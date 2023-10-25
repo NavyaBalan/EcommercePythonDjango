@@ -1,0 +1,36 @@
+
+
+{% extends 'nav.html' %}
+{% load static %}
+{% block title %} Vegetables {% endblock title %}
+
+{% block content %} 
+<div class="content" style="margin-top: 5%;">
+    <h2 class="text-center text-success mt-10" >Vegetables</h2>
+{% for v in vegetables %}
+<div class="card shadow p-3 mb-5 bg-body-tertiary mt-5  rounded d-inline-flex" 
+style="width: 18rem;margin-top: 2%;margin-left: 3%;">
+  <a href="{% url 'product_details' v.id %}">
+    <div class="image-container">
+          <img src="{{ v.product_image.url }}"  class="card-img-top custom-card-img" style="height: 13rem;"  alt="...">
+    </div>
+  </a>
+    <div class="card-body">
+      <h5 class="card-title" style="font-size: 5;">{{ v.name }}</h5>
+      <p class="card-text"> $ {{ v.price }}</p>
+      <p class="card-text">{{ v.description }}</p>
+    </div>  
+  </div>
+{% endfor %}
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+

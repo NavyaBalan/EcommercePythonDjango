@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <style>
+  
+  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>  {% block title %}{% endblock title %} </title>
+
+
+    <!-- --------------  Fontawesome Css Section  -------------- -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- ------ BootStrap Css  Section  --------- -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+   <!-- --------- Style Css Link Section -------------- -->
+    <!-- <link rel="stylesheet" href="{% static 'css/nav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}"> -->
+        
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+
+</head>
+<body>
+
+    <!-- --------- Navbar  Section -------------- -->
+
+
+  <header id="header"  class="fixed-top">
+          <nav class="navbar navbar-expand-lg navbar-dark " >
+            <div class="container-fluid fixed-top">
+              <h1 class="navbar-brand" >Farm Fresh</h1>
+              
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  {% if request.user.is_authenticated %}
+                  <li class="nav-item">
+                    <a class="nav-link active text-white"  aria-current="page" href="{% url 'home'%}">Home</a>
+                  </li> 
+                 
+                
+                  <li class="nav-item">
+                    <a class="nav-link text-white"  href="{% url 'vegetable_category'  %}">Vegetables</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-white" href="{% url 'fruit_category'  %}">Fruits</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-white" href="">Contact us</a>
+                  </li>
+                </ul>
+                <form method="get" action="/search/" class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" 
+                  name="Search" id="search" placeholder="search" aria-label="Search">
+                  
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+                <div id="search-suggestions"></div>
+              </div>
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              
+            
+               
+                <li class="nav-item dropdown ">
+                  <a class="nav-link dropdown-toggle text-white"  href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user" style="margin-right: 10%;"></i>{{request.user}}
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'profileview' %}">Profile</a></li>
+                   
+                    <li><a class="dropdown-item" href="{% url 'changepassword' %}">Change Password</a></li>
+                    <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                  </ul>
+                </li>
+                <li class="nav-tem mx-2">
+                  <a href="{% url 'cart' %}" class="nav-link text-white">Cart</a>
+                </li>
+              
+                {% else %}
+                <li class="nav-tem mx-2">
+                  <a href="{% url 'login'%}" class="nav-link text-white">Login</a>
+                </li>
+                <li class="nav-tem mx-2">
+                  <a href="{% url 'register'%}" class="nav-link text-white">Registration</a>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </nav>
+  </header>
+      <!-- --------- End Navbar Section -------------- -->
+
+        <!-- --------- Home Section -------------- -->
+
+      {% block banner_slider %}{% endblock banner_slider %}
+      {% block home_content %} {% endblock home_content %}
+      {% block products %}  {% endblock products %}
+
+        <!-- --------- End Home Section -------------- -->
+ 
+      {% block content %}{% endblock content %}
+      {% block Payment-gateway %}{% endblock Payment-gateway %}
+      {% block accounts_content%}{% endblock accounts_content%}
+
+
+   
+        <!-- --------- Footer Section -------------- -->
+    <footer class=" container-fluid bg-success text-center fixed-bottom p-2 mt-5">
+        Copyright &copy; 2023 || Developed by Farm Fresh
+    </footer>
+
+
+    <!-- ---------------- Javascript links Section--------------- -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js
+    " integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+     crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" 
+    integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" 
+    crossorigin="anonymous"></script>
+    
+    
+    <script
+     src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+    
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</body>
+</html>

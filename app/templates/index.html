@@ -1,0 +1,87 @@
+
+{% extends 'nav.html' %}
+{% load static %}
+{% block title %} Farm Fresh {% endblock title %}
+
+
+{% block banner_slider%}
+<div class="background-image-container">
+  <div class="overlay-text">
+    
+    <h2>Farm Foods Goodness <br> at Your doorstep</h2>
+    <a href="{% url 'vegetable_category' %}" style="text-decoration: none; background-color: seagreen; color: #fff;
+     padding: 10px 20px; border-radius: 15px;
+      display: inline-block; margin-top: 10px;">Explore Now</a>
+  </div>
+</div>
+{% endblock banner_slider%}
+
+{% block home_content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <!-- Left Div: YouTube Video -->
+      <div class="video-container">
+        <!-- Embed your YouTube video here -->
+  
+        <iframe width="560" height="315"
+         src="https://www.youtube.com/embed/6i4nU-x0xJ8?si=E3jVwIEMjFB7Csip"
+          title="YouTube video player" 
+          frameborder="0" allow="accelerometer; autoplay; clipboard-write;
+           encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen></iframe>
+          <img   width="560" height="315" src="{% static '/img/img.jpg' %}" alt="">
+      </div>
+    </div>
+    <div class="col-md-6 shadow p-3 mb-5 bg-body rounded">
+      <!-- Right Div: Paragraph -->
+      <div class="paragraph-container">
+        <h1 class="header">Safe food, Now traceable</h1><br>
+        <p>Your food is now traceable!</p>
+        <p>We are revolutionizing the way the world consumes fruits & vegetables. With the help of our technology, your food is now completely traceable. Get insights about your produce, farmer & farming methods just by scanning a QR code!.</p>
+        <p>Our farmers community follow good agricultural practices under our regular supervision. Moreover, the produce is regularly tested for pesticides & strict quality checks ensure our customers get nothing but the freshest product out there.</p>
+        <p>It’s time to change the way you eat- Grab your traceable food & trace it right back to its roots. Step into a world of healthy & pesticide-free lifestyle, with Farmers Fresh Zone.</p>
+        <p>Everybody’s switching to a healthy lifestyle with Farmers Fresh Zone, have you ?.</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock home_content %}
+    
+ <!-- -------products------------- -->
+        
+ {% block products %}
+<div class="container">
+   <h2 class="text-center mt-5">Featured Products</h2>
+   <div class="row">
+     {% for product in products %}
+     <div class="card shadow p-3 mb-5 bg-body-tertiary   rounded d-inline-flex"
+     style="width: 18rem; margin-top: 4%; margin-left: 3%">
+       <!-- <div class="card mb-4"> -->
+
+        <div class="image-container">
+          <img src="{{ product.product_image.url }}" class="card-img-top" style="height: 13rem;"  alt="{{ product.name }}">
+        </div>
+     
+         <div class="card-body">
+           <h5 class="card-title">{{ product.name }}</h5>
+          
+           <p class="card-text">Price: ${{ product.price }}</p>
+           <p class="card-text">{{ product.description }}</p>
+           <a href="{% url 'product_details' product.id %}" class="btn btn-success">View Details</a>
+         </div>
+          
+       <!-- </div> -->
+     </div>
+     {% endfor %}
+   </div>
+ </div>
+ {% endblock products %}
+ 
+ 
+ 
+ 
+ 
+
+    
+
